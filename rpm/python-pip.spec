@@ -39,6 +39,10 @@ License:        MIT and Python and ASL 2.0 and BSD and ISC and LGPLv2 and MPLv2.
 URL:            https://github.com/sailfishos/python-pip
 Source0:        %{name}-%{version}.tar.gz
 
+# JB#65603: Only update the vendored certifi as updating pip is blocked by
+#           other dependencies at the moment
+Patch1:         0001-Update-vendored-certifi-to-2026.10.19.patch
+
 BuildArch:      noarch
 
 %description
@@ -52,7 +56,7 @@ Packages" or "Pip Installs Python".
 # You can find the versions in src/pip/_vendor/vendor.txt file.
 %global bundled() %{expand:
 Provides: bundled(python%{1}dist(CacheControl)) = 0.13.1
-Provides: bundled(python%{1}dist(certifi)) = 2023.7.22
+Provides: bundled(python%{1}dist(certifi)) = 2026.10.19
 Provides: bundled(python%{1}dist(chardet)) = 5.1.0
 Provides: bundled(python%{1}dist(colorama)) = 0.4.6
 Provides: bundled(python%{1}dist(distlib)) = 0.3.6
